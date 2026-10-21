@@ -1,0 +1,383 @@
+<title>Albion Brahimi Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single readable column (max 1080px), hero with name + illustrative regression plot, projects as a two-column grid of case studies */
+:root{
+  --bg:#F3F6F7; --surface:#FFFFFF; --fg:#13232B; --muted:#5A6B73; --line:#D9E1E4;
+  --accent:#0E6577; --accent-soft:#E1EFF2; --ochre:#B8862B; --ochre-soft:#F6ECD8;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E171B; --surface:#152229; --fg:#E4ECEF; --muted:#94A6AD; --line:#253740;
+  --accent:#5CC2D6; --accent-soft:#16343C; --ochre:#E0B460; --ochre-soft:#33291A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E171B; --surface:#152229; --fg:#E4ECEF; --muted:#94A6AD; --line:#253740;
+  --accent:#5CC2D6; --accent-soft:#16343C; --ochre:#E0B460; --ochre-soft:#33291A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:22px}
+nav .mark{font-family:var(--mono);font-weight:500;font-size:14px}
+nav .mark span{color:var(--accent)}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--muted);text-decoration:none;font-size:14px}
+nav ul a:hover{color:var(--fg)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;padding-block:48px 72px}
+.hero > *{min-width:0}
+.hero h1{font-size:clamp(44px,7vw,80px);font-weight:700;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:34ch;margin:20px 0 28px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:28px}
+.meta b{color:var(--fg);font-weight:500}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;font-family:var(--body)}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.plot{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 12px}
+.plot svg{width:100%;height:auto;display:block}
+.plot .cap{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+
+section{padding-block:56px;border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.sec-head h2{font-size:clamp(30px,4vw,40px);font-weight:700}
+
+/* about */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.about > *{min-width:0}
+.about p{margin:0 0 14px;max-width:62ch}
+.facts{display:grid;gap:14px;align-content:start}
+.fact{display:grid;grid-template-columns:110px 1fr;gap:12px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.fact:last-child{border-bottom:0}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.card .top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.status{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.status.done{background:var(--accent-soft);color:var(--accent)}
+.status.wip{background:var(--ochre-soft);color:var(--ochre)}
+.status.plan{background:transparent;color:var(--muted);border:1px dashed var(--line)}
+.card h3{font-size:23px;font-weight:700}
+.card p{margin:0;color:var(--muted)}
+.qa{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.qa dt{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:2px}
+.qa dd{margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tag{font-family:var(--mono);font-size:12px;padding:3px 9px;border:1px solid var(--line);border-radius:6px;color:var(--fg)}
+.links{display:flex;gap:16px;font-size:14px;font-weight:600}
+.links a{text-decoration:none}
+.links a:hover{text-decoration:underline}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.skill h3{font-size:19px;margin-bottom:14px}
+.skill ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.lvl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;font-size:15px}
+.bar{grid-column:1/-1;height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.lvl small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* coursework */
+.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0 32px}
+.course{display:flex;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:1px solid var(--line);font-size:15px}
+.course span:last-child{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.contact > *{min-width:0}
+.contact h2{font-size:clamp(32px,5vw,52px)}
+.contact p{color:var(--muted);max-width:44ch}
+.email{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.email code{font-family:var(--mono);font-size:15px;user-select:all;overflow-wrap:anywhere;flex:1;min-width:0}
+.email button{background:var(--accent-soft);color:var(--accent);border:0;border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer;font-family:var(--body)}
+.social{display:flex;gap:18px;margin-top:16px;font-weight:600;font-size:15px}
+footer{padding-block:28px 40px;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+
+@media (max-width:820px){
+  .hero,.about,.contact{grid-template-columns:1fr;gap:32px}
+  .projects{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
+  .hero{padding-block:24px 48px}
+}
+@media (prefers-reduced-motion: no-preference){
+  .fitline{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.4s .3s ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+</style>
+
+<div class="wrap">
+  <nav>
+    <div class="mark">albion<span>.</span>brahimi</div>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="label">Applied Economics &amp; Management · Year 2</div>
+      <h1 style="margin-top:14px">Albion Brahimi.<br><em>Economics, in data.</em></h1>
+      <p class="lead">I use data to answer economic and business questions: what drives prices, who buys what, and which numbers actually matter.</p>
+      <div class="meta">
+        <span><b>Based in</b> Pristina, Kosovo</span>
+        <span><b>Tools</b> Python · SQL · Excel · Power BI</span>
+        <span><b>Open to</b> internships</span>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <figure class="plot" style="margin:0">
+      <div class="label" style="margin-bottom:8px">Household consumption vs. remittances</div>
+      <svg id="scatter" viewBox="0 0 400 260" role="img" aria-label="Illustrative scatter plot with a fitted regression line"></svg>
+      <figcaption class="cap"><span>y = β₀ + β₁x + ε</span><span>illustrative data</span></figcaption>
+    </figure>
+  </header>
+
+  <section id="projects">
+    <div class="sec-head">
+      <h2>Selected projects</h2>
+      <span class="label">8 projects</span>
+    </div>
+    <div class="projects">
+
+      <article class="card">
+        <div class="top"><span class="label">Econometrics</span><span class="status done">Completed</span></div>
+        <h3>Remittances and household consumption in Kosovo</h3>
+        <p>Do remittances raise household spending, and by how much? A regression study using public macro data.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>World Bank WDI, Kosovo Agency of Statistics (ASK)</dd>
+          <dt>Method</dt><dd>OLS regression, diagnostics, robustness checks</dd>
+          <dt>Result</dt><dd>Write your main finding here in one sentence.</dd>
+        </dl>
+        <div class="tags"><span class="tag">R</span><span class="tag">ggplot2</span><span class="tag">regression</span></div>
+        <div class="links"><a href="#">Report ↗</a><a href="#">Code ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Dashboard</span><span class="status done">Completed</span></div>
+        <h3>Inflation tracker: where prices rose most</h3>
+        <p>An interactive dashboard breaking consumer prices into categories (food, energy, transport) month by month.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>ASK consumer price index (CPI) tables</dd>
+          <dt>Method</dt><dd>Data cleaning, year-on-year change, category weights</dd>
+          <dt>Result</dt><dd>Name the category that drove inflation most.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span></div>
+        <div class="links"><a href="#">Dashboard ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Marketing analytics</span><span class="status done">Completed</span></div>
+        <h3>Customer segmentation for an online retailer</h3>
+        <p>Grouping customers by how recently, how often and how much they buy, to suggest a targeted campaign for each group.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>UCI Online Retail dataset (500k+ transactions)</dd>
+          <dt>Method</dt><dd>RFM scores, K-means clustering</dd>
+          <dt>Result</dt><dd>Describe the segments and one recommendation.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">scikit-learn</span></div>
+        <div class="links"><a href="#">Notebook ↗</a><a href="#">Code ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Labour economics</span><span class="status done">Completed</span></div>
+        <h3>Youth unemployment across the Western Balkans</h3>
+        <p>Comparing youth unemployment in Kosovo, Albania, North Macedonia, Serbia and Montenegro over the last 15 years.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>World Bank WDI, ILOSTAT</dd>
+          <dt>Method</dt><dd>SQL queries, panel comparison, charts</dd>
+          <dt>Result</dt><dd>Write the main comparison finding here.</dd>
+        </dl>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">matplotlib</span></div>
+        <div class="links"><a href="#">Code ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Machine learning</span><span class="status done">Completed</span></div>
+        <h3>What sets apartment prices in Pristina?</h3>
+        <p>Collecting rental and sale listings from local real-estate sites, then predicting price from size, neighbourhood, floor and age of the building.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>Self-collected listings (web scraping), ~3,000 ads</dd>
+          <dt>Method</dt><dd>Web scraping, feature engineering, linear regression vs. XGBoost, SHAP values</dd>
+          <dt>Result</dt><dd>Price per m² by neighbourhood, and which features matter most.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Python</span><span class="tag">BeautifulSoup</span><span class="tag">XGBoost</span><span class="tag">SHAP</span></div>
+        <div class="links"><a href="#">Notebook ↗</a><a href="#">Code ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Web app</span><span class="status done">Completed</span></div>
+        <h3>Kosovo Economy Explorer</h3>
+        <p>A live web app where anyone can pick an indicator (GDP, inflation, remittances, trade) and compare Kosovo with its neighbours and the EU.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>World Bank API, pulled live</dd>
+          <dt>Method</dt><dd>API requests, automated data pipeline, interactive charts</dd>
+          <dt>Result</dt><dd>A public app link anyone can use.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">API</span></div>
+        <div class="links"><a href="#">Live app ↗</a><a href="#">Code ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Forecasting</span><span class="status done">Completed</span></div>
+        <h3>Forecasting electricity demand in Kosovo</h3>
+        <p>Hourly electricity load is shaped by temperature, weekdays and holidays. This project forecasts next-week demand and compares models.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>ENTSO-E transparency platform (KOSTT load), weather data</dd>
+          <dt>Method</dt><dd>Seasonal decomposition, SARIMA, Prophet, error comparison (MAPE)</dd>
+          <dt>Result</dt><dd>Which model forecasts best, and how much weather adds.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Python</span><span class="tag">statsmodels</span><span class="tag">Prophet</span></div>
+        <div class="links"><a href="#">Notebook ↗</a></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><span class="label">Text analysis</span><span class="status done">Completed</span></div>
+        <h3>Reading the Central Bank: sentiment in CBK reports</h3>
+        <p>Turning years of Central Bank of Kosovo reports into data, to measure how optimistic or cautious the tone was and whether it tracks the real economy.</p>
+        <dl class="qa">
+          <dt>Data</dt><dd>CBK monthly and annual reports (PDF)</dd>
+          <dt>Method</dt><dd>PDF text extraction, finance sentiment dictionary, correlation with GDP growth</dd>
+          <dt>Result</dt><dd>A sentiment index over time, plotted against growth.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">pdfplumber</span></div>
+        <div class="links"><a href="#">Code ↗</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <h2>Toolkit</h2>
+      <span class="label">Self-assessed</span>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <h3>Analysis</h3>
+        <ul>
+          <li class="lvl">Excel <small>advanced</small><span class="bar"><i style="width:85%"></i></span></li>
+          <li class="lvl">Python (pandas) <small>intermediate</small><span class="bar"><i style="width:60%"></i></span></li>
+          <li class="lvl">SQL <small>intermediate</small><span class="bar"><i style="width:55%"></i></span></li>
+          <li class="lvl">R <small>basic</small><span class="bar"><i style="width:40%"></i></span></li>
+        </ul>
+      </div>
+      <div class="skill">
+        <h3>Visualization</h3>
+        <ul>
+          <li class="lvl">Power BI <small>intermediate</small><span class="bar"><i style="width:65%"></i></span></li>
+          <li class="lvl">matplotlib / seaborn <small>intermediate</small><span class="bar"><i style="width:55%"></i></span></li>
+          <li class="lvl">Tableau <small>basic</small><span class="bar"><i style="width:35%"></i></span></li>
+        </ul>
+      </div>
+      <div class="skill">
+        <h3>Methods</h3>
+        <ul>
+          <li class="lvl">Descriptive statistics <small>advanced</small><span class="bar"><i style="width:80%"></i></span></li>
+          <li class="lvl">Regression analysis <small>intermediate</small><span class="bar"><i style="width:60%"></i></span></li>
+          <li class="lvl">Clustering <small>basic</small><span class="bar"><i style="width:40%"></i></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about">
+      <div>
+        <p>I'm a second-year student of Applied Economics and Management. In class I learn how markets, firms and households behave. Outside class I learn the tools to measure it: cleaning messy datasets, building dashboards, and testing whether a pattern is real or just noise.</p>
+        <p>I'm most interested in the Kosovo and Western Balkans economy, where good data is scattered and a clear chart can still change a conversation.</p>
+        <p>I'm looking for an internship in data analytics, business intelligence or economic research.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><span class="label">Studying</span><span>BSc Applied Economics &amp; Management, Year 2 of 3</span></div>
+        <div class="fact"><span class="label">Languages</span><span>Albanian (native), English (C1)</span></div>
+        <div class="fact"><span class="label">Learning now</span><span>Time series forecasting, Python for econometrics</span></div>
+        <div class="fact"><span class="label">Certificates</span><span>Google Data Analytics (in progress)</span></div>
+      </div>
+    </div>
+
+    <div class="label" style="margin:40px 0 4px">Relevant coursework</div>
+    <div class="courses">
+      <div class="course"><span>Statistics I &amp; II</span><span>Y1</span></div>
+      <div class="course"><span>Microeconomics</span><span>Y1</span></div>
+      <div class="course"><span>Macroeconomics</span><span>Y1</span></div>
+      <div class="course"><span>Econometrics</span><span>Y2</span></div>
+      <div class="course"><span>Management Accounting</span><span>Y2</span></div>
+      <div class="course"><span>Marketing Management</span><span>Y2</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div>
+        <h2>Let's work with data.</h2>
+        <p style="margin-top:14px">Open to internships, research assistant roles and student projects. Email is the fastest way to reach me.</p>
+      </div>
+      <div>
+        <div class="email">
+          <code id="mail">albion.brahimi@example.com</code>
+          <button id="copy" type="button">Copy</button>
+        </div>
+        <div class="social">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="#">CV (PDF) ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Albion Brahimi · Built with HTML &amp; CSS</footer>
+</div>
+
+<script>
+(function(){
+  // Illustrative scatter with OLS fit (seeded, not real data)
+  const svg=document.getElementById('scatter'), NS='http://www.w3.org/2000/svg';
+  const L=40,R=388,T=12,B=228;
+  let s=7; const rnd=()=>{s=(s*9301+49297)%233280;return s/233280};
+  const pts=[]; for(let i=0;i<34;i++){const x=rnd()*10; const y=2+0.62*x+(rnd()-.5)*3.2; pts.push([x,y])}
+  const n=pts.length,mx=pts.reduce((a,p)=>a+p[0],0)/n,my=pts.reduce((a,p)=>a+p[1],0)/n;
+  let sxy=0,sxx=0; pts.forEach(([x,y])=>{sxy+=(x-mx)*(y-my);sxx+=(x-mx)**2});
+  const b1=sxy/sxx,b0=my-b1*mx;
+  const X=x=>L+(x/10)*(R-L), Y=y=>B-(y/10)*(B-T);
+  const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
+  [0,2.5,5,7.5,10].forEach(v=>{
+    el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':1});
+    const t=el('text',{x:L-8,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:'var(--muted)','font-family':'IBM Plex Mono, monospace'});t.textContent=v;
+  });
+  [0,5,10].forEach(v=>{const t=el('text',{x:X(v),y:B+18,'text-anchor':v===0?'start':v===10?'end':'middle','font-size':11,fill:'var(--muted)','font-family':'IBM Plex Mono, monospace'});t.textContent=v});
+  pts.forEach(([x,y])=>el('circle',{cx:X(x),cy:Y(Math.max(0,Math.min(10,y))),r:4.2,fill:'var(--ochre)','fill-opacity':.75}));
+  el('line',{class:'fitline',x1:X(0),y1:Y(b0),x2:X(10),y2:Y(b0+b1*10),stroke:'var(--accent)','stroke-width':2.5,'stroke-linecap':'round'});
+  const lab=el('text',{x:R,y:Y(b0+b1*10)-10,'text-anchor':'end','font-size':12,fill:'var(--accent)','font-family':'IBM Plex Mono, monospace','font-weight':500});
+  lab.textContent='β₁ = '+b1.toFixed(2);
+
+  // Copy email
+  const btn=document.getElementById('copy'), mail=document.getElementById('mail');
+  btn.addEventListener('click',()=>{
+    const done=()=>{btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1600)};
+    const fallback=()=>{const r=document.createRange();r.selectNodeContents(mail);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);btn.textContent='Selected'};
+    try{navigator.clipboard.writeText(mail.textContent).then(done,fallback)}catch(e){fallback()}
+  });
+})();
+</script>
